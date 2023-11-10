@@ -25,4 +25,4 @@ jobs:
       if: github.event_name == 'pull_request'
       run: |
         pip install flake8
-        flake8 github/workspace/airflow
+        flake8 airflow
