@@ -1,0 +1,24 @@
+name: trigger-jenkins-build-dag-dev
+
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  trigger-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Trigger Jenkins Build
+      if: github.event_name == 'push'
+      run: echo "push"
+
+    - name: Run Flake8 on 'airflow' directory
+      if: github.event_name == 'pull_request'
+      run: |
+        pip install flake8
+        flake8 airflow
