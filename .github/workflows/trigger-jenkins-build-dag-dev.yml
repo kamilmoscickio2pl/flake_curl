@@ -17,6 +17,10 @@ jobs:
       if: github.event_name == 'push'
       run: echo "push"
 
+    - name: Checkout repository
+      if: github.event_name == 'pull_request'
+      uses: actions/checkout@v2
+
     - name: Run Flake8 on 'airflow' directory
       if: github.event_name == 'pull_request'
       run: |
